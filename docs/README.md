@@ -11,11 +11,6 @@
 這份工具可以將一個 CSV 表格（包含 ID、圖片檔名、名稱、描述……等欄位）自動轉換成 Unity 的 ScriptableObject。
 **最大特點**是可以一行設定欄位對應，支援圖片自動載入，不用再手動拖 `sprite` 到 SO 裡。
 
-簡單說：
-完成前置準備工作後
-
-你把表格準備好 → 按一個按鈕 → Unity 幫你建一堆 SO 資料物件。
-
 ---
 
 ## 📂目錄結構
@@ -83,9 +78,9 @@ SheetToSO
 
 ---
 
-## 🧠架構設計（你面試講這段會加分）
+## 🧠架構設計
 
-### Parser 抽象化
+### Parser interface
 
 ```csharp
 public interface ICsvParser
@@ -101,12 +96,12 @@ public interface ICsvParser
 
   * `SimpleCsvParser`
   * `ExcelParser`
-  * `GoogleSheetsParser`（有天你會寫）
-  * `AI 自動幫你補表格 Parser`（現在不要想太多）
+  * `GoogleSheetsParser`
+  * `AI 自動幫你補表格 Parser`
 
 ### VisualBasicCsvParser
 
-用 `TextFieldParser` 解析 CSV（不會炸 BOM、引號、逗號地獄）
+用 `TextFieldParser` 解析 CSV
 
 ```csharp
 parser.SetDelimiters(",");
